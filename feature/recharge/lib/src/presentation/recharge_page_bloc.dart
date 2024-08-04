@@ -122,7 +122,6 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
           },
           (_) => RechargeErrorTypes.unknown,
         );
-        return RechargeErrorTypes.unknown;
       },
       (f) => RechargeErrorTypes.unknown,
     );
@@ -158,7 +157,6 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
               (_) => RechargeErrorTypes.unknown,
             );
           });
-          return RechargeErrorTypes.unknown;
         },
         (_) => RechargeErrorTypes.unknown,
       );

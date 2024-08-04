@@ -12,7 +12,7 @@ class AppDashboardNavigator extends DashboardPageNavigator {
 
   @override
   Future<void> addBeneficiary() async {
-    _router.push<void>(
+    await _router.push<void>(
       AppAddBeneficiaryRoute(),
     );
   }
