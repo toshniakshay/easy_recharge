@@ -1,0 +1,17 @@
+import 'package:core/core.dart';
+import 'package:core/src/domain/repository/transactions_repository.dart';
+import 'package:injectable/injectable.dart';
+import 'package:prelude/prelude.dart';
+
+@injectable
+class GetAllTransactionsForUserUseCase {
+  const GetAllTransactionsForUserUseCase(this._repository);
+
+  final TransactionsRepository _repository;
+
+  Future<Result<List<TransactionDetails>, Exception>> call({
+    required String userId,
+  }) {
+    return _repository.getAllTransactionsForUser(userId: userId);
+  }
+}

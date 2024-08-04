@@ -1,0 +1,14 @@
+name: app_di
+description: App's dependency injection mechanism
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  get_it: ^7.6.4
+
+dev_dependencies:
+  lint_analysis:
+    path: ../lint_analysis

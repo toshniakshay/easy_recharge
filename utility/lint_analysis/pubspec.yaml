@@ -1,0 +1,6 @@
+name: lint_analysis
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'

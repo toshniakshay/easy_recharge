@@ -1,0 +1,22 @@
+name: core
+description: contains all the core classes which will be required in app
+publish_to: none
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  freezed_annotation: ^2.4.1
+  injectable: ^2.3.2
+  app_di:
+    path: ../utility/app_di
+  prelude:
+    path: ../utility/prelude
+
+dev_dependencies:
+  lint_analysis:
+    path: ../utility/lint_analysis
+  build_runner: ^2.4.7
+  freezed: ^2.4.5
+  injectable_generator: ^2.4.1
+  json_serializable: 6.8.0
