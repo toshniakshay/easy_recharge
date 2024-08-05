@@ -150,7 +150,7 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
             final topUp = await _creditWallet(
               amount: state.selectedRechargeAmount!.amount,
             );
-            topUp.fold(
+            return topUp.fold(
               (_) {
                 return RechargeErrorTypes.accountCreditedAgain;
               },
