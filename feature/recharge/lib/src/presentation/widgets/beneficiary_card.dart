@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_initicon/flutter_initicon.dart';
+import 'package:recharge/src/utils/constants.dart';
 
 class BeneficiaryCard extends StatelessWidget {
   const BeneficiaryCard({
@@ -49,10 +50,9 @@ class BeneficiaryCard extends StatelessWidget {
                     beneficiary.phoneNumber,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-
                   SizedBox(height: xs),
                   Text(
-                    'Nick Name: ${beneficiary.nickName}',
+                    '${Constants.nickName} ${beneficiary.nickName}',
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],

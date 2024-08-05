@@ -19,12 +19,7 @@ class AddBeneficiaryPage extends StatelessWidget {
           listener: (context, state) {
             if (state.showSnackbar) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    'Beneficiary Added successfully',
-                  ),
-                ),
-              );
+                  const SnackBar(content: Text(Constants.beneficiarySaved)));
             }
           },
           child: BlocBuilder<AddBeneficiaryBloc, AddBeneficiaryState>(

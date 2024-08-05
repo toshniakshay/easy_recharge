@@ -6,5 +6,7 @@ sealed class RechargePageState with _$RechargePageState {
     @Default(UiState.initial()) UiState uiState,
     @Default([]) List<Currency> rechargeAmountList,
     Currency? selectedRechargeAmount,
+    RechargeErrorTypes? rechargeError,
+    @Default(false) rechargeSuccessful,
   }) = _RechargePageState;
 }

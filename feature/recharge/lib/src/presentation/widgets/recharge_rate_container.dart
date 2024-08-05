@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:recharge/src/utils/constants.dart';
 
 class RechargeRateContainer extends StatelessWidget {
   const RechargeRateContainer({
@@ -17,13 +18,13 @@ class RechargeRateContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectedCurrencyText = selectedCurrency == null
-        ? 'Select'
+        ? Constants.select
         : '${selectedCurrency?.locale}  ${selectedCurrency?.amount}';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Please select the amount to Top Up',
+          Constants.selectAmountHelpText,
           style: Theme.of(context).textTheme.labelLarge,
         ),
         SizedBox(

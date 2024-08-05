@@ -161,12 +161,14 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
         (_) => RechargeErrorTypes.unknown,
       );
       if (rechargeErrors == null) {
-        // Process Complete
+        emit(state.copyWith(rechargeSuccessful: true));
       } else {
-        // Emit Error
+        emit(state.copyWith(rechargeError: error));
+        emit(state.copyWith(rechargeError: null));
       }
     } else {
-      // Emit error
+      emit(state.copyWith(rechargeError: error));
+      emit(state.copyWith(rechargeError: null));
     }
   }
 }

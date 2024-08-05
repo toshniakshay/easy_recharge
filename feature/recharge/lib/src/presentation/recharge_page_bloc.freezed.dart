@@ -500,6 +500,8 @@ mixin _$RechargePageState {
   UiState get uiState => throw _privateConstructorUsedError;
   List<Currency> get rechargeAmountList => throw _privateConstructorUsedError;
   Currency? get selectedRechargeAmount => throw _privateConstructorUsedError;
+  RechargeErrorTypes? get rechargeError => throw _privateConstructorUsedError;
+  dynamic get rechargeSuccessful => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RechargePageStateCopyWith<RechargePageState> get copyWith =>
@@ -515,7 +517,9 @@ abstract class $RechargePageStateCopyWith<$Res> {
   $Res call(
       {UiState uiState,
       List<Currency> rechargeAmountList,
-      Currency? selectedRechargeAmount});
+      Currency? selectedRechargeAmount,
+      RechargeErrorTypes? rechargeError,
+      dynamic rechargeSuccessful});
 
   $UiStateCopyWith<$Res> get uiState;
   $CurrencyCopyWith<$Res>? get selectedRechargeAmount;
@@ -537,6 +541,8 @@ class _$RechargePageStateCopyWithImpl<$Res, $Val extends RechargePageState>
     Object? uiState = null,
     Object? rechargeAmountList = null,
     Object? selectedRechargeAmount = freezed,
+    Object? rechargeError = freezed,
+    Object? rechargeSuccessful = freezed,
   }) {
     return _then(_value.copyWith(
       uiState: null == uiState
@@ -551,6 +557,14 @@ class _$RechargePageStateCopyWithImpl<$Res, $Val extends RechargePageState>
           ? _value.selectedRechargeAmount
           : selectedRechargeAmount // ignore: cast_nullable_to_non_nullable
               as Currency?,
+      rechargeError: freezed == rechargeError
+          ? _value.rechargeError
+          : rechargeError // ignore: cast_nullable_to_non_nullable
+              as RechargeErrorTypes?,
+      rechargeSuccessful: freezed == rechargeSuccessful
+          ? _value.rechargeSuccessful
+          : rechargeSuccessful // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 
@@ -586,7 +600,9 @@ abstract class _$$RechargePageStateImplCopyWith<$Res>
   $Res call(
       {UiState uiState,
       List<Currency> rechargeAmountList,
-      Currency? selectedRechargeAmount});
+      Currency? selectedRechargeAmount,
+      RechargeErrorTypes? rechargeError,
+      dynamic rechargeSuccessful});
 
   @override
   $UiStateCopyWith<$Res> get uiState;
@@ -608,6 +624,8 @@ class __$$RechargePageStateImplCopyWithImpl<$Res>
     Object? uiState = null,
     Object? rechargeAmountList = null,
     Object? selectedRechargeAmount = freezed,
+    Object? rechargeError = freezed,
+    Object? rechargeSuccessful = freezed,
   }) {
     return _then(_$RechargePageStateImpl(
       uiState: null == uiState
@@ -622,6 +640,13 @@ class __$$RechargePageStateImplCopyWithImpl<$Res>
           ? _value.selectedRechargeAmount
           : selectedRechargeAmount // ignore: cast_nullable_to_non_nullable
               as Currency?,
+      rechargeError: freezed == rechargeError
+          ? _value.rechargeError
+          : rechargeError // ignore: cast_nullable_to_non_nullable
+              as RechargeErrorTypes?,
+      rechargeSuccessful: freezed == rechargeSuccessful
+          ? _value.rechargeSuccessful!
+          : rechargeSuccessful,
     ));
   }
 }
@@ -632,7 +657,9 @@ class _$RechargePageStateImpl implements _RechargePageState {
   const _$RechargePageStateImpl(
       {this.uiState = const UiState.initial(),
       final List<Currency> rechargeAmountList = const [],
-      this.selectedRechargeAmount})
+      this.selectedRechargeAmount,
+      this.rechargeError,
+      this.rechargeSuccessful = false})
       : _rechargeAmountList = rechargeAmountList;
 
   @override
@@ -650,10 +677,15 @@ class _$RechargePageStateImpl implements _RechargePageState {
 
   @override
   final Currency? selectedRechargeAmount;
+  @override
+  final RechargeErrorTypes? rechargeError;
+  @override
+  @JsonKey()
+  final dynamic rechargeSuccessful;
 
   @override
   String toString() {
-    return 'RechargePageState(uiState: $uiState, rechargeAmountList: $rechargeAmountList, selectedRechargeAmount: $selectedRechargeAmount)';
+    return 'RechargePageState(uiState: $uiState, rechargeAmountList: $rechargeAmountList, selectedRechargeAmount: $selectedRechargeAmount, rechargeError: $rechargeError, rechargeSuccessful: $rechargeSuccessful)';
   }
 
   @override
@@ -665,7 +697,11 @@ class _$RechargePageStateImpl implements _RechargePageState {
             const DeepCollectionEquality()
                 .equals(other._rechargeAmountList, _rechargeAmountList) &&
             (identical(other.selectedRechargeAmount, selectedRechargeAmount) ||
-                other.selectedRechargeAmount == selectedRechargeAmount));
+                other.selectedRechargeAmount == selectedRechargeAmount) &&
+            (identical(other.rechargeError, rechargeError) ||
+                other.rechargeError == rechargeError) &&
+            const DeepCollectionEquality()
+                .equals(other.rechargeSuccessful, rechargeSuccessful));
   }
 
   @override
@@ -673,7 +709,9 @@ class _$RechargePageStateImpl implements _RechargePageState {
       runtimeType,
       uiState,
       const DeepCollectionEquality().hash(_rechargeAmountList),
-      selectedRechargeAmount);
+      selectedRechargeAmount,
+      rechargeError,
+      const DeepCollectionEquality().hash(rechargeSuccessful));
 
   @JsonKey(ignore: true)
   @override
@@ -687,7 +725,9 @@ abstract class _RechargePageState implements RechargePageState {
   const factory _RechargePageState(
       {final UiState uiState,
       final List<Currency> rechargeAmountList,
-      final Currency? selectedRechargeAmount}) = _$RechargePageStateImpl;
+      final Currency? selectedRechargeAmount,
+      final RechargeErrorTypes? rechargeError,
+      final dynamic rechargeSuccessful}) = _$RechargePageStateImpl;
 
   @override
   UiState get uiState;
@@ -695,6 +735,10 @@ abstract class _RechargePageState implements RechargePageState {
   List<Currency> get rechargeAmountList;
   @override
   Currency? get selectedRechargeAmount;
+  @override
+  RechargeErrorTypes? get rechargeError;
+  @override
+  dynamic get rechargeSuccessful;
   @override
   @JsonKey(ignore: true)
   _$$RechargePageStateImplCopyWith<_$RechargePageStateImpl> get copyWith =>

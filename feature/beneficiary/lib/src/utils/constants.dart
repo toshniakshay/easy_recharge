@@ -14,4 +14,5 @@ abstract class Constants {
   static const beneficiaryPhoneNumberInvalidError = 'Invalid phone';
 
   static const save = 'Save';
+  static const beneficiarySaved = 'Beneficiary Added successfully';
 }
