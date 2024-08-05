@@ -21,7 +21,7 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
     this._transactionsForMonth,
     this._addTransaction,
     this._creditWallet,
-      this._navigator,
+    this._navigator,
   ) : super(RechargePageState()) {
     on<RechargePageEvent>(
       (event, emit) => event.map(
@@ -144,17 +144,18 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
           await _debitWallet(amount: state.selectedRechargeAmount!.amount);
       RechargeErrorTypes? rechargeErrors;
 
+      final TransactionDetails t = TransactionDetails(
+          benficiary: e.beneficiary,
+          transactionId: Uuid().v1(),
+          transactionType: TransactionTypes.topUpBeneficiary,
+          amount: state.selectedRechargeAmount!.amount,
+          transactionTime: DateTime.now(),
+          status: TransactionStatus.pending);
+
       rechargeErrors = await topUp.fold(
         (s) async {
-          final TransactionDetails t = TransactionDetails(
-            benficiary: e.beneficiary,
-            transactionId: Uuid().v1(),
-            transactionType: TransactionTypes.topUpBeneficiary,
-            amount: state.selectedRechargeAmount!.amount,
-            transactionTime: DateTime.now(),
-            status: TransactionStatus.success,
-          );
-          final rechargeResult = await _addTransaction(transaction: t);
+          final rechargeResult = await _addTransaction(
+              transaction: t.copyWith(status: TransactionStatus.success));
 
           return rechargeResult.fold((s) {
             return null;
@@ -170,7 +171,12 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
             );
           });
         },
-        (_) => RechargeErrorTypes.unknown,
+        (_) async {
+          await _addTransaction(
+              transaction: t.copyWith(status: TransactionStatus.failed));
+          //Todo:  Rollback machanism should be robust
+          return RechargeErrorTypes.unknown;
+        },
       );
       if (rechargeErrors == null) {
         emit(state.copyWith(rechargeSuccessful: true));
