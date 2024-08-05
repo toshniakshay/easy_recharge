@@ -844,7 +844,7 @@ mixin _$AddBeneficiaryState {
   AddBeneficiaryField<String> get phoneField =>
       throw _privateConstructorUsedError;
   bool get hasErrors => throw _privateConstructorUsedError;
-  bool get beneficiaryAdded => throw _privateConstructorUsedError;
+  bool get showSnackbar => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddBeneficiaryStateCopyWith<AddBeneficiaryState> get copyWith =>
@@ -863,7 +863,7 @@ abstract class $AddBeneficiaryStateCopyWith<$Res> {
       AddBeneficiaryField<String> nickNameField,
       AddBeneficiaryField<String> phoneField,
       bool hasErrors,
-      bool beneficiaryAdded});
+      bool showSnackbar});
 
   $UiStateCopyWith<$Res> get uiState;
   $AddBeneficiaryFieldCopyWith<String, $Res> get nameField;
@@ -889,7 +889,7 @@ class _$AddBeneficiaryStateCopyWithImpl<$Res, $Val extends AddBeneficiaryState>
     Object? nickNameField = null,
     Object? phoneField = null,
     Object? hasErrors = null,
-    Object? beneficiaryAdded = null,
+    Object? showSnackbar = null,
   }) {
     return _then(_value.copyWith(
       uiState: null == uiState
@@ -912,9 +912,9 @@ class _$AddBeneficiaryStateCopyWithImpl<$Res, $Val extends AddBeneficiaryState>
           ? _value.hasErrors
           : hasErrors // ignore: cast_nullable_to_non_nullable
               as bool,
-      beneficiaryAdded: null == beneficiaryAdded
-          ? _value.beneficiaryAdded
-          : beneficiaryAdded // ignore: cast_nullable_to_non_nullable
+      showSnackbar: null == showSnackbar
+          ? _value.showSnackbar
+          : showSnackbar // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -969,7 +969,7 @@ abstract class _$$AddBeneficiaryStateImplCopyWith<$Res>
       AddBeneficiaryField<String> nickNameField,
       AddBeneficiaryField<String> phoneField,
       bool hasErrors,
-      bool beneficiaryAdded});
+      bool showSnackbar});
 
   @override
   $UiStateCopyWith<$Res> get uiState;
@@ -997,7 +997,7 @@ class __$$AddBeneficiaryStateImplCopyWithImpl<$Res>
     Object? nickNameField = null,
     Object? phoneField = null,
     Object? hasErrors = null,
-    Object? beneficiaryAdded = null,
+    Object? showSnackbar = null,
   }) {
     return _then(_$AddBeneficiaryStateImpl(
       uiState: null == uiState
@@ -1020,9 +1020,9 @@ class __$$AddBeneficiaryStateImplCopyWithImpl<$Res>
           ? _value.hasErrors
           : hasErrors // ignore: cast_nullable_to_non_nullable
               as bool,
-      beneficiaryAdded: null == beneficiaryAdded
-          ? _value.beneficiaryAdded
-          : beneficiaryAdded // ignore: cast_nullable_to_non_nullable
+      showSnackbar: null == showSnackbar
+          ? _value.showSnackbar
+          : showSnackbar // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -1037,7 +1037,7 @@ class _$AddBeneficiaryStateImpl implements _AddBeneficiaryState {
       this.nickNameField = const AddBeneficiaryField(value: ''),
       this.phoneField = const AddBeneficiaryField(value: ''),
       this.hasErrors = true,
-      this.beneficiaryAdded = false});
+      this.showSnackbar = false});
 
   @override
   @JsonKey()
@@ -1056,11 +1056,11 @@ class _$AddBeneficiaryStateImpl implements _AddBeneficiaryState {
   final bool hasErrors;
   @override
   @JsonKey()
-  final bool beneficiaryAdded;
+  final bool showSnackbar;
 
   @override
   String toString() {
-    return 'AddBeneficiaryState(uiState: $uiState, nameField: $nameField, nickNameField: $nickNameField, phoneField: $phoneField, hasErrors: $hasErrors, beneficiaryAdded: $beneficiaryAdded)';
+    return 'AddBeneficiaryState(uiState: $uiState, nameField: $nameField, nickNameField: $nickNameField, phoneField: $phoneField, hasErrors: $hasErrors, showSnackbar: $showSnackbar)';
   }
 
   @override
@@ -1077,13 +1077,13 @@ class _$AddBeneficiaryStateImpl implements _AddBeneficiaryState {
                 other.phoneField == phoneField) &&
             (identical(other.hasErrors, hasErrors) ||
                 other.hasErrors == hasErrors) &&
-            (identical(other.beneficiaryAdded, beneficiaryAdded) ||
-                other.beneficiaryAdded == beneficiaryAdded));
+            (identical(other.showSnackbar, showSnackbar) ||
+                other.showSnackbar == showSnackbar));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, uiState, nameField,
-      nickNameField, phoneField, hasErrors, beneficiaryAdded);
+      nickNameField, phoneField, hasErrors, showSnackbar);
 
   @JsonKey(ignore: true)
   @override
@@ -1100,7 +1100,7 @@ abstract class _AddBeneficiaryState implements AddBeneficiaryState {
       final AddBeneficiaryField<String> nickNameField,
       final AddBeneficiaryField<String> phoneField,
       final bool hasErrors,
-      final bool beneficiaryAdded}) = _$AddBeneficiaryStateImpl;
+      final bool showSnackbar}) = _$AddBeneficiaryStateImpl;
 
   @override
   UiState get uiState;
@@ -1113,7 +1113,7 @@ abstract class _AddBeneficiaryState implements AddBeneficiaryState {
   @override
   bool get hasErrors;
   @override
-  bool get beneficiaryAdded;
+  bool get showSnackbar;
   @override
   @JsonKey(ignore: true)
   _$$AddBeneficiaryStateImplCopyWith<_$AddBeneficiaryStateImpl> get copyWith =>

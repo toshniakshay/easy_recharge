@@ -79,12 +79,8 @@ class _Content extends StatelessWidget {
     return TabBarView(
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        MaintainStateWidget(
-          child: RechargePage(),
-        ),
-        MaintainStateWidget(
-          child: HistoryPage(),
-        ),
+        RechargePage(),
+        HistoryPage(),
       ],
     );
   }

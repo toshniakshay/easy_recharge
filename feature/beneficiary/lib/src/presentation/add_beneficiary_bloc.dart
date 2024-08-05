@@ -102,7 +102,11 @@ class AddBeneficiaryBloc
     final result = await _saveBeneficiary(beneficiary: beneficiary);
 
     result.fold(
-      (s) => _navigator.onBeneficiaryAdded(),
+      (s) {
+        emit(state.copyWith(showSnackbar: true));
+        emit(state.copyWith(showSnackbar: false));
+        return _navigator.onBeneficiaryAdded();
+      },
       (e) => emit(state.copyWith(uiState: UiState.error(e))),
     );
   }

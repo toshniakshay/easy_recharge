@@ -7,7 +7,13 @@ class AccountWalletMock {
 
   num get balance => _accountBalance;
 
-  num debitAccount({required num amount}) => _accountBalance - amount;
+  num debitAccount({required num amount}) {
+    _accountBalance = _accountBalance - amount;
+    return _accountBalance;
+  }
 
-  num creditAccount({required num amount}) => _accountBalance - amount;
+  num creditAccount({required num amount}) {
+    _accountBalance = _accountBalance + amount;
+    return _accountBalance;
+  }
 }

@@ -11,7 +11,7 @@ class AddBeneficiaryState with _$AddBeneficiaryState {
     @Default(AddBeneficiaryField(value: ''))
     AddBeneficiaryField<String> phoneField,
     @Default(true) bool hasErrors,
-    @Default(false) bool beneficiaryAdded,
+    @Default(false) bool showSnackbar,
   }) = _AddBeneficiaryState;
 }
 

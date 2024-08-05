@@ -17,8 +17,14 @@ class AddBeneficiaryPage extends StatelessWidget {
         appbar: ApplicationTopBar(title: Constants.screenTitle),
         body: BlocListener<AddBeneficiaryBloc, AddBeneficiaryState>(
           listener: (context, state) {
-            if (state.beneficiaryAdded) {
-              Navigator.of(context).pop();
+            if (state.showSnackbar) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'Beneficiary Added successfully',
+                  ),
+                ),
+              );
             }
           },
           child: BlocBuilder<AddBeneficiaryBloc, AddBeneficiaryState>(
