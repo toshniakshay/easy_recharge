@@ -11,6 +11,7 @@
 import 'package:core/core.dart' as _i494;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:recharge/recharge.dart' as _i477;
 import 'package:recharge/src/presentation/recharge_page_bloc.dart' as _i129;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -32,6 +33,7 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i494.GetTransactionsForMonthUseCase>(),
           gh<_i494.AddTransactionUseCase>(),
           gh<_i494.CreditBalanceUseCase>(),
+          gh<_i477.RechargeNavigator>(),
         ));
     return this;
   }

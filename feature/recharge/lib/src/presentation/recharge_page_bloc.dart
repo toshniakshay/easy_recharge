@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:prelude/prelude.dart';
+import 'package:recharge/recharge.dart';
 import 'package:recharge/src/utils/recharge_error_enum.dart';
 import 'package:uuid/uuid.dart';
 
@@ -20,6 +21,7 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
     this._transactionsForMonth,
     this._addTransaction,
     this._creditWallet,
+      this._navigator,
   ) : super(RechargePageState()) {
     on<RechargePageEvent>(
       (event, emit) => event.map(
@@ -39,6 +41,8 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
   final GetAllTransactionsForUserUseCase _getTransactionsForUser;
   final GetTransactionsForMonthUseCase _transactionsForMonth;
   final AddTransactionUseCase _addTransaction;
+
+  final RechargeNavigator _navigator;
 
   Future<void> _onLoad(Emitter<RechargePageState> emit) async {
     emit(state.copyWith(uiState: UiState.loading()));
@@ -96,11 +100,18 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
               totalTransactionValue = totalTransactionValue + ele.amount;
             });
 
-            if (_beneficiaryVerified && totalTransactionValue >= 1000) {
+            // Also considered a scenario to check if user is valid but after the current top up if limits are getting exhausted
+            if (_beneficiaryVerified &&
+                (totalTransactionValue +
+                        state.selectedRechargeAmount!.amount) >=
+                    1000) {
               return RechargeErrorTypes.verifiedUserLimitExceeded;
             }
 
-            if (!_beneficiaryVerified && totalTransactionValue >= 500) {
+            if (!_beneficiaryVerified &&
+                (totalTransactionValue +
+                        state.selectedRechargeAmount!.amount) >=
+                    500) {
               return RechargeErrorTypes.unVerifiedUserLimitExceeded;
             }
 
@@ -111,7 +122,8 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
                 num monthlyAmount = 0;
                 s.map((e) => monthlyAmount = monthlyAmount + e.amount);
 
-                if (monthlyAmount >= 3000) {
+                if ((monthlyAmount + state.selectedRechargeAmount!.amount) >=
+                    3000) {
                   return RechargeErrorTypes.monthlyTransactionLimitExceeded;
                 }
 
@@ -162,6 +174,7 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
       );
       if (rechargeErrors == null) {
         emit(state.copyWith(rechargeSuccessful: true));
+        _navigator.onRechargeComplete();
       } else {
         emit(state.copyWith(rechargeError: error));
         emit(state.copyWith(rechargeError: null));

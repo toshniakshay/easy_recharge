@@ -25,7 +25,10 @@ class RechargePage extends StatelessWidget {
         appbar: ApplicationTopBar(title: Constants.screenTitle),
         body: BlocListener<RechargePageBloc, RechargePageState>(
           listener: (context, state) {
-            if (state.rechargeSuccessful) {}
+            if (state.rechargeSuccessful) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Top up was successful')));
+            }
 
             if (state.rechargeError != null) {
               _showErrorDialog(context, state.rechargeError!);
@@ -78,11 +81,13 @@ class RechargePage extends StatelessWidget {
   String _getErrorMessage(RechargeErrorTypes rechargeErrorTypes) {
     final String? message;
 
-    switch(rechargeErrorTypes) {
+    switch (rechargeErrorTypes) {
       case RechargeErrorTypes.verifiedUserLimitExceeded:
-        message = 'this beneficiary has reached maximum amount allowed for month';
+        message =
+            'this beneficiary has reached maximum amount allowed for month';
       case RechargeErrorTypes.unVerifiedUserLimitExceeded:
-        message = 'this beneficiary has reached maximum amount allowed for month';
+        message =
+            'this beneficiary has reached maximum amount allowed for month';
       case RechargeErrorTypes.monthlyTransactionLimitExceeded:
         message = 'monthly top up limit is reached';
       case RechargeErrorTypes.lowBalance:
