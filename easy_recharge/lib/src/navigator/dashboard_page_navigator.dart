@@ -26,8 +26,6 @@ class AppDashboardNavigator extends DashboardPageNavigator {
   @override
   Future<void> rechargeBeneficiary({required Beneficiary beneficiary}) =>
       _router.push<void>(
-        AppRechargeRoute(
-          beneficiary: beneficiary,
-        ),
+        AppRechargeRoute(beneficiary: beneficiary),
       );
 }

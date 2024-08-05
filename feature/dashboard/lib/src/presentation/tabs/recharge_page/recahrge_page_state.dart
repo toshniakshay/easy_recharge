@@ -6,5 +6,6 @@ class RechargePageState with _$RechargePageState {
     @Default(UiState.initial()) UiState uiState,
     @Default([]) List<Beneficiary> beneficiariesList,
     @Default(0) num accountBalance,
+    @Default(false) bool showDialog,
   }) = _RechargePageState;
 }

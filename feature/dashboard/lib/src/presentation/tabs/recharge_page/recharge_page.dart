@@ -16,20 +16,45 @@ class RechargePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => diContainer<RechargePageBloc>(),
-      child: BlocBuilder<RechargePageBloc, RechargePageState>(
-        builder: (context, state) => state.uiState.map(
-          initial: (_) => Loading(),
-          loading: (_) => Loading(),
-          loaded: (_) => _Content(
-            beneficiaryList: state.beneficiariesList,
-            accountBalance: state.accountBalance,
-          ),
-          error: (_) => ErrorStateView(
-            onRetry: () => context.read<RechargePageBloc>().add(
-                  RechargePageEvent.load(),
-                ),
+      child: BlocListener<RechargePageBloc, RechargePageState>(
+        listener: (_, state) async {
+          if (state.showDialog) {
+            _showAlertDialog(context);
+          }
+        },
+        child: BlocBuilder<RechargePageBloc, RechargePageState>(
+          builder: (context, state) => state.uiState.map(
+            initial: (_) => Loading(),
+            loading: (_) => Loading(),
+            loaded: (_) => _Content(
+              beneficiaryList: state.beneficiariesList,
+              accountBalance: state.accountBalance,
+            ),
+            error: (_) => ErrorStateView(
+              onRetry: () => context.read<RechargePageBloc>().add(
+                    RechargePageEvent.load(),
+                  ),
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  Future<void> _showAlertDialog(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text("Warning"),
+        content: const Text("You can have at max 5 beneficiaries"),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: const Text("Okay"),
+          ),
+        ],
       ),
     );
   }
@@ -42,7 +67,7 @@ class _Content extends StatelessWidget {
   });
 
   final num? accountBalance;
-  
+
   final List<Beneficiary> beneficiaryList;
 
   @override
@@ -55,7 +80,7 @@ class _Content extends StatelessWidget {
             Center(
               child: DashedContainer(
                 child: Text(
-                  'Balance: AED ${accountBalance}',
+                  'Balance: AED $accountBalance',
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge

@@ -19,6 +19,7 @@ mixin _$RechargePageState {
   UiState get uiState => throw _privateConstructorUsedError;
   List<Beneficiary> get beneficiariesList => throw _privateConstructorUsedError;
   num get accountBalance => throw _privateConstructorUsedError;
+  bool get showDialog => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RechargePageStateCopyWith<RechargePageState> get copyWith =>
@@ -34,7 +35,8 @@ abstract class $RechargePageStateCopyWith<$Res> {
   $Res call(
       {UiState uiState,
       List<Beneficiary> beneficiariesList,
-      num accountBalance});
+      num accountBalance,
+      bool showDialog});
 
   $UiStateCopyWith<$Res> get uiState;
 }
@@ -55,6 +57,7 @@ class _$RechargePageStateCopyWithImpl<$Res, $Val extends RechargePageState>
     Object? uiState = null,
     Object? beneficiariesList = null,
     Object? accountBalance = null,
+    Object? showDialog = null,
   }) {
     return _then(_value.copyWith(
       uiState: null == uiState
@@ -69,6 +72,10 @@ class _$RechargePageStateCopyWithImpl<$Res, $Val extends RechargePageState>
           ? _value.accountBalance
           : accountBalance // ignore: cast_nullable_to_non_nullable
               as num,
+      showDialog: null == showDialog
+          ? _value.showDialog
+          : showDialog // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -92,7 +99,8 @@ abstract class _$$RechargePageStateImplCopyWith<$Res>
   $Res call(
       {UiState uiState,
       List<Beneficiary> beneficiariesList,
-      num accountBalance});
+      num accountBalance,
+      bool showDialog});
 
   @override
   $UiStateCopyWith<$Res> get uiState;
@@ -112,6 +120,7 @@ class __$$RechargePageStateImplCopyWithImpl<$Res>
     Object? uiState = null,
     Object? beneficiariesList = null,
     Object? accountBalance = null,
+    Object? showDialog = null,
   }) {
     return _then(_$RechargePageStateImpl(
       uiState: null == uiState
@@ -126,6 +135,10 @@ class __$$RechargePageStateImplCopyWithImpl<$Res>
           ? _value.accountBalance
           : accountBalance // ignore: cast_nullable_to_non_nullable
               as num,
+      showDialog: null == showDialog
+          ? _value.showDialog
+          : showDialog // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -138,7 +151,8 @@ class _$RechargePageStateImpl
   const _$RechargePageStateImpl(
       {this.uiState = const UiState.initial(),
       final List<Beneficiary> beneficiariesList = const [],
-      this.accountBalance = 0})
+      this.accountBalance = 0,
+      this.showDialog = false})
       : _beneficiariesList = beneficiariesList;
 
   @override
@@ -157,10 +171,13 @@ class _$RechargePageStateImpl
   @override
   @JsonKey()
   final num accountBalance;
+  @override
+  @JsonKey()
+  final bool showDialog;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RechargePageState(uiState: $uiState, beneficiariesList: $beneficiariesList, accountBalance: $accountBalance)';
+    return 'RechargePageState(uiState: $uiState, beneficiariesList: $beneficiariesList, accountBalance: $accountBalance, showDialog: $showDialog)';
   }
 
   @override
@@ -170,7 +187,8 @@ class _$RechargePageStateImpl
       ..add(DiagnosticsProperty('type', 'RechargePageState'))
       ..add(DiagnosticsProperty('uiState', uiState))
       ..add(DiagnosticsProperty('beneficiariesList', beneficiariesList))
-      ..add(DiagnosticsProperty('accountBalance', accountBalance));
+      ..add(DiagnosticsProperty('accountBalance', accountBalance))
+      ..add(DiagnosticsProperty('showDialog', showDialog));
   }
 
   @override
@@ -182,12 +200,18 @@ class _$RechargePageStateImpl
             const DeepCollectionEquality()
                 .equals(other._beneficiariesList, _beneficiariesList) &&
             (identical(other.accountBalance, accountBalance) ||
-                other.accountBalance == accountBalance));
+                other.accountBalance == accountBalance) &&
+            (identical(other.showDialog, showDialog) ||
+                other.showDialog == showDialog));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uiState,
-      const DeepCollectionEquality().hash(_beneficiariesList), accountBalance);
+  int get hashCode => Object.hash(
+      runtimeType,
+      uiState,
+      const DeepCollectionEquality().hash(_beneficiariesList),
+      accountBalance,
+      showDialog);
 
   @JsonKey(ignore: true)
   @override
@@ -201,7 +225,8 @@ abstract class _RechargePageState implements RechargePageState {
   const factory _RechargePageState(
       {final UiState uiState,
       final List<Beneficiary> beneficiariesList,
-      final num accountBalance}) = _$RechargePageStateImpl;
+      final num accountBalance,
+      final bool showDialog}) = _$RechargePageStateImpl;
 
   @override
   UiState get uiState;
@@ -209,6 +234,8 @@ abstract class _RechargePageState implements RechargePageState {
   List<Beneficiary> get beneficiariesList;
   @override
   num get accountBalance;
+  @override
+  bool get showDialog;
   @override
   @JsonKey(ignore: true)
   _$$RechargePageStateImplCopyWith<_$RechargePageStateImpl> get copyWith =>

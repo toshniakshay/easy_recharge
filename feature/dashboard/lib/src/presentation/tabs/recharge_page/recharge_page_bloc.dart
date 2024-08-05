@@ -20,7 +20,7 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
     on<RechargePageEvent>(
       (event, emit) => event.map(
         load: (_) => _onLoad(emit),
-        addBeneficiary: (_) => _onAddBeneficiary(),
+        addBeneficiary: (_) => _onAddBeneficiary(emit),
         rechargeBeneficiary: (e) => _onRechargeBeneficiary(e),
       ),
     );
@@ -56,9 +56,10 @@ class RechargePageBloc extends Bloc<RechargePageEvent, RechargePageState> {
     );
   }
 
-  Future<void> _onAddBeneficiary() async {
+  Future<void> _onAddBeneficiary(Emitter<RechargePageState> emit) async {
     if (state.beneficiariesList.length >= 5) {
-      // Need better error handling here
+      emit(state.copyWith(showDialog: true));
+      emit(state.copyWith(showDialog: false));
       return;
     }
     await _navigator.addBeneficiary().then(

@@ -10,7 +10,7 @@ class BeneficiariesView extends StatelessWidget {
     super.key,
   });
 
-  final cardWidth;
+  final double? cardWidth;
   final List<Beneficiary> beneficiariesList;
   final Function(Beneficiary beneficiary) onRechargeClick;
 
